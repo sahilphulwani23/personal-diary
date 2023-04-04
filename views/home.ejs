@@ -1,0 +1,27 @@
+
+<%- include("partials/header"); -%>
+    <h1 class="title">Home</h1>
+    <p> <%= startingContent %> </p>
+    <form action="/compose">
+      <button class="btn btn-primary home-btn main-btn">Compose Post</button>
+    </form>
+    
+  <div class="row">
+  <%  posts.forEach(function(post){ %>
+
+    <% if (post.title !== undefined && post.content !== undefined ) { %>
+    <div class="col-md-5 col-sm-11 post-box">
+      <h1 class="post-title-home"><%=post.title%> 
+        <a class="icon-home" href="/edit/<%= post.title %>"><i class="fa-solid fa-pencil"></i></a>
+        <a class="icon-home" href="/delete/<%= post.title %>"><i class="fa-solid fa-trash"></i></a>
+      </h1>
+      <p>
+      <%=post.content.substring(0, 110) + " ..."%>
+      <a href="/posts/<%= post.title %>">Read More</a>
+      </p>
+    </div>
+
+    <% }}) %>
+  </div>
+
+<%- include("partials/footer"); -%>
